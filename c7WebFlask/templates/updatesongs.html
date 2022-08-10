@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %} 
+
+ <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3">Song Form</h1>
+        <p class="col-lg-10 fs-4">Update Song.</p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+         
+        <form method="post" class="p-4 p-md-5 border rounded-3 bg-light">  
+             <small class="text-lg-center"> {% block title %} Update "{{ aSongRecord['title'] }}" {% endblock %}</small>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="Title" name="Title"  placeholder="Song title" value="{{ request.form['Title'] or aSongRecord['Title']}}">
+            <label for="Title">Song Title</label>
+          </div>
+           <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="Title" name="Artist"  placeholder="Song Artist" value="{{ request.form['Artist'] or aSongRecord['Artist']}}">
+            <label for="Title">Artist</label>
+          </div>
+           <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="Genre" name="Genre"  placeholder="Song Genre" value="{{ request.form['Genre'] or aSongRecord['Genre']}}">
+            <label for="Title">Genre</label>
+          </div>
+          <!-- <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div> -->
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Update Song</button>
+          <hr class="my-4">
+          <small class="text-muted"> update confirmation will be displayed here</small>
+        </form>
+    <form action="{{url_for('delete', songID=aSongRecord['songID'])}}" method="POST">
+        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this song')" class="btn-danger">
+    </form> 
+      </div>
+    </div>
+  </div>
+ <hr>
+ 
+{% endblock content %}
